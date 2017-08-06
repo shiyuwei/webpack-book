@@ -6,7 +6,18 @@ Webpack在React中非常的受青睐，因为它支持热模块替换（Hot Modu
 
 读到这，如果你恰好对React有所了解，却又不知道Hot Module Replacement(HMR) 为何物，我建议大家先看一下HMR的基本介绍，之后看下这篇文章：[点击阅读](https://segmentfault.com/a/1190000006178770)，记录好如何配置HMR即可，接下来的教程中，我们可能继续给大家扩展HMR的相关知识。
 
+## Webpack的打包建立在模块基础上
+
+当你的项目中配置了webpack的**入口(input)**和**出口(output)**后，就可以使用webpack打包了。打包的过程从你的入口文件开始，入口文件就是一个模块（modules），通过imports可以引入其他模块。
+
+当使用webpack打包项目时，它首先会便利iports，建立一个项目的依赖关系图(dependency graph)，然后根据这个关系图和你的配置文件内容，生成你所需要的输出文件。你可以在代码中设置切分点(split point)，webpack可以根据设置，把工程的代码切分成多个。注意，webpack分析依赖关系图的时候，会通过一些静态的方式生成，而不是靠动态的运行文件来分析，这样性能上的消耗很小。
+
+Webpack 支持ES6，CommonJS, AMD 的模块化方案.内部加载器(loader)机制使得它也可以处理css文件间的依赖关系，你只要安装css-loader后使用@import和url()即可完成css间的相互引用。你还可以使用很多Webpack的插件来帮助你完成指定的任务，比如说压缩代码，代码国际化，热模块加载等等。
+
+![webpack流程](https://github.com/shenglongli/webpack-book/blob/master/imgs/webpack-process.png)
 
 
 
-http://www.cnblogs.com/wonyun/p/6030090.html
+
+
+
