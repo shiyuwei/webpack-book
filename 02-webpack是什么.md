@@ -108,6 +108,39 @@ module.exports = {
 
 ## 热模块替换（Hot Module Replacement）
 
+你可能对LiveReload，BrowserSync这种工具很熟悉了，当你更改代码的时候，这些工具会帮助你自动刷新页面。HMR比这些工具要更高级一点。在React中，如果你使用HMR，可以在不改变组件state的情况下完成页面的刷新。使用livereactload在Browserify中也可以实现HMR，所以这个热模块加载不是专属webpack的。
+
+## 代码分割
+
+除了HMR特性，webpack打包的能力还有很多，它允许你通过不同的形式来拆飞打包代码。你甚至可以设置在应用运行的时候动态的加载执行代码。这些懒加载的方式使用起来也很简单，在大型项目中会被经常使用。当需要使用它们时，你只需加载相应的依赖即可。
+
+小型项目也可以通过代码分割受益，它能够让你的应用访问速度更快，性能更好。所以花些了解这方面的知识也是值得的。
+
+## 给资源添加哈希值
+
+使用webpack你可以给每一个打包文件后面加一个hash后缀，每当代码变化，哈希值都会跟着变。这使得页面代码变化时，如果你使用代码分割的功能，那么每次修改局部代码时，你只需要重新加载很少量的代码。
+
+## 总结
+Webpack comes with a significant learning curve. However it’s a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to other tools, check out the official comparison.
+
+Webpack won’t solve everything, however, it does solve the problem of bundling. That’s one less worry during development. Using package.json and webpack alone can take you far.
+
+To summarize:
+
+Webpack is a module bundler, but you can also use it for tasks as well.
+Webpack relies on a dependency graph underneath. Webpack traverses through the source to construct the graph and it uses this information and configuration to generate bundles.
+Webpack relies on loaders and plugins. Loaders operate on module level while plugins rely on hooks provided by webpack and have the best access to its execution process.
+Webpack’s configuration describes how to transform assets of the graphs and what kind of output it should generate. A part of this information can be included in the source itself if features like code splitting are used.
+Hot Module Replacement (HMR) helped to popularize webpack. It's a feature that can enhance development experience by updating code in the browser without a full refresh.
+Webpack can generate hashes for filenames allowing you to invalidate bundles as their contents change.
+In the next part of the book you'll learn to construct a development configuration using webpack while learning more about its basic concepts.
+
+If you enjoyed this intro, consider subscribing to the mailing list below or following @survivejs for occasional updates. There is also RSS available for old beards (no pun intended).
+
+
+
+
+
 
 
 
