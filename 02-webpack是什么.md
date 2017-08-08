@@ -46,6 +46,70 @@ webpack会先加载解析模块的所有loader，然后按照从下至上，从�
 
 尽管加载器（loader）可以做很多操作，在高级任务中，他们能做的事情也有限。webpack内部提供了插件机制，可以在运行时执行一些插入事件，比较好的一个例子是：ExtractTextPlugin这个插件可以帮助我们在打包过程中抽离出独立的css文件，这个插件和loader是一个串联的运行关系。如果不使用这个插件，css和js会被打包在一起，关于抽取这个概念，在css分离一章中我们会具体讲解。
 
+## 打包结束
+
+当所有相互引用的模块被处理后，webpack会生成输出文件。输出文件中会抱憾一个启动脚本，指引浏览器如何执行这段代码。你也可以把这个脚本单独的生成为一个文件，这个后续我们会深入讨论。输出文件的结果你可以根据环境的不同作不同的配置，你可以生成测试环境的代码，生成线上环境的代码，你也可以生成非web项目的一些代码。
+
+上述的内容并不是构建过程的全部。例如你可以定义文件的切分点，根据业务逻辑载入不同的切割文件，这部分的内容在代码分割章节会被讲到。
+
+# Webpack 是配置驱动的
+
+webpack运行的核心是基于配置的。这是官方教程中的一个配置demo，它能够带你简单的了解webpack的基础配置。
+
+#### webpack.config.js
+
+``` javascript
+
+const webpack = require('webpack');
+
+module.exports = {
+  // 打包入口
+  entry: {
+    app: './entry.js',
+  },
+
+  // 输出目录
+  output: {
+    // 输出文件所在目录
+    path: __dirname,
+
+    // 根据模式匹配出打包生成文件的名字
+    filename: '[name].js',
+  },
+
+  // 当遇到imports语句时，如何进行解析
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
+
+  // 附加要处理的内容
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
+  ],
+
+  // 适配模块解析的一些算法和配置
+  resolve: {
+    alias: { ... },
+  },
+};
+```
+
+当webpack的配置文件比较庞大复杂的时候，这种配置模式看起来会让人比较难理解。如果你不了解底层的解析机制，你是看不懂这些配置文件的，这个教程的目的就是一步步带大家了解原理，帮助你学会如何配置webpack。
+
+## 热模块替换（Hot Module Replacement）
+
+
+
 
 
 
