@@ -121,22 +121,22 @@ module.exports = {
 使用webpack你可以给每一个打包文件后面加一个hash后缀，每当代码变化，哈希值都会跟着变。这使得页面代码变化时，如果你使用代码分割的功能，那么每次修改局部代码时，你只需要重新加载很少量的代码。
 
 ## 总结
-Webpack comes with a significant learning curve. However it’s a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to other tools, check out the official comparison.
 
-Webpack won’t solve everything, however, it does solve the problem of bundling. That’s one less worry during development. Using package.json and webpack alone can take you far.
+webpack学习的曲线非常陡峭，但是它确实是值得你学习的，在长期的使用学习过程中，你会发现它会帮你节约大量的时间和生产力。关于webpack和其他工具的一些比较，官网上可以找到详细的介绍。
 
-To summarize:
+webpack不能帮你解决所有的问题，但是它可以帮你解决开发过程中令人挠头的打包问题。使用package.json和webpack，仅仅这两个东西就可以帮你大忙。
 
-Webpack is a module bundler, but you can also use it for tasks as well.
-Webpack relies on a dependency graph underneath. Webpack traverses through the source to construct the graph and it uses this information and configuration to generate bundles.
-Webpack relies on loaders and plugins. Loaders operate on module level while plugins rely on hooks provided by webpack and have the best access to its execution process.
-Webpack’s configuration describes how to transform assets of the graphs and what kind of output it should generate. A part of this information can be included in the source itself if features like code splitting are used.
-Hot Module Replacement (HMR) helped to popularize webpack. It's a feature that can enhance development experience by updating code in the browser without a full refresh.
-Webpack can generate hashes for filenames allowing you to invalidate bundles as their contents change.
-In the next part of the book you'll learn to construct a development configuration using webpack while learning more about its basic concepts.
+# 章节小节:
 
-If you enjoyed this intro, consider subscribing to the mailing list below or following @survivejs for occasional updates. There is also RSS available for old beards (no pun intended).
+webpack是一个模块打包工具，但你也可以使用它作为任务构建工具。
 
+webpack底层依赖于模块间的关系图谱，webpack根据配置文件，遍历模块来构建这个图谱，并根据这个图谱来创建打包文件。webpack也依赖于内部的加载器（loader）和插件（plugin）。loader在模块级别进行操作处理，而插件依赖于webpack提供的钩子在具体的时间点执行，插件可以在丰富的时间点对打包流程进行处理。
+
+webpack的配置文件描述了如何转换过程打包文件中的的各类文件，如何最终生成打包文件等内容。有时候，在源代码里也会有一些配置信息，比如说你希望使用代码分割的功能，那么在业务代码中，你也需要有一些配置内容。
+
+热模块替换功能(HMR)使得webpack越发流行，这个特性能够提供用户更加的开发体验，不需要刷新页面，开发者就可以更新页面的内容。webpack可以自动增加文件哈希后缀，方便代码变更后上线，解决用户缓存问题。
+
+教程的下一部分，你将会学会如何配置webpack的配置文件，同时了解更多的webpack基础概念。
 
 
 
