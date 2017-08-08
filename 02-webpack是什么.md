@@ -40,13 +40,12 @@ Webpack 会处理构建过程中依赖图谱中的所有模块。如果入口包
 
 ## 执行流程
 
-Assuming all loaders were found, webpack evaluates the matched loaders from bottom to top and right to left (styleLoader(cssLoader('./main.css'))), running the module through each loader in turn. As a result you get output which webpack will inject in the resulting bundle. The Loader Definitions chapter covers the topic in detail.
+webpack会先加载解析模块的所有loader，然后按照从下至上，从右到左的顺序执行（这点非常重要），如果你希望实现这样的效果：styleLoader(cssLoader('./main.css'))，先解析css再挂载到页面，那么顺序一定要放对。加载其定义的章节会详细阐述这部分的内容。
 
-If all loader evaluation completed without a runtime error, webpack includes the source in the last bundle. Plugins allow you to intercept runtime events at different stages of the bundling process.
+如果执行过程中没有出现任何的错误，webpack会把资源打包到最后生成的文件中。插件的作用在于，可以在构建流程中的某些具体时刻去做一些运行时插入的操作。
 
-Although loaders can do a lot, they don’t provide enough power for advanced tasks by themselves. Plugins intercept runtime events provided by webpack. A good example is bundle extraction performed by ExtractTextPlugin which, working in tandem with a loader, extracts CSS files out of the bundle and into a file of its own.
+尽管加载器（loader）可以做很多操作，在高级任务中，他们能做的事情也有限。webpack内部提供了插件机制，可以在运行时执行一些插入事件，比较好的一个例子是：ExtractTextPlugin这个插件可以帮助我们在打包过程中抽离出独立的css文件，这个插件和loader是一个串联的运行关系。如果不使用这个插件，css和js会被打包在一起，关于抽取这个概念，在css分离一章中我们会具体讲解。
 
-Without this step, CSS would end up in the resulting JavaScript as webpack treats all code as JavaScript by default. The extraction idea is discussed in the Separating CSS chapter.
 
 
 
